@@ -26,7 +26,7 @@ SECRET_KEY = 'gl1ivwd+4xi(y)rh4s5_#jbc1gd&x86#(1h45ltws5xtvi((r#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localst', 'sdn-boticario.herokuapp.com']
 
 # Application definition
 
