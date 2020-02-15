@@ -1,0 +1,44 @@
+.sidebar {
+  background: #333333;
+  text-align: left;
+}
+
+.content {
+  grid-area: content;
+  position: relative;
+}
+
+.header {
+  grid-area: header;
+}
+
+.footer {
+  grid-area: footer;
+  position: relative;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 3px;
+        grid-template-columns: 130px auto auto;
+        grid-template-areas:
+            "header  header  header"
+            "sidebar content content"
+            "footer  footer  footer";
+        background-color: darkcyan;
+        color: #444;
+    }
+
+
+.box {
+  background-color: #1e1e1e;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 120%;
+
+}
+
+.green-lake {
+    background-color: #001910;
+}
+

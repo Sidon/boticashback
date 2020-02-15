@@ -1,0 +1,140 @@
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",Ubuntu,"Droid Sans","Helvetica Neue",sans-serif;
+    color: #121925;
+    // background-color: lightyellow;
+    background-color: #31363b;
+    font-size: 12px;
+    font-style: normal;
+  }
+
+  h1 {
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  h3 {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    margin: 0;
+    transition: .2s ease-in-out;
+  }
+  
+  p {
+    margin-top: 8px;
+    margin-bottom: 3px;
+  }
+
+
+.sidebar {
+  background: #333333;
+  text-align: left;
+}
+
+.content {
+  grid-area: content;
+  position: relative;
+}
+
+.header {
+  grid-area: header;
+}
+
+.footer {
+  grid-area: footer;
+  position: relative;
+}
+
+
+.wrapper {
+    display: grid;
+    grid-gap: 3px;
+        grid-template-columns: 130px auto auto;
+        grid-template-areas:
+            "header  header  header"
+            "sidebar content content"
+            "footer  footer  footer";
+        background-color: darkcyan;
+        color: #444;
+    }
+
+
+.box {
+  background-color: #1e1e1e;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 120%;
+
+}
+
+.green-lake {
+    background-color: #001910;
+    // background-image: url("../img/green-lake.jpg");
+}
+
+
+.header,
+.footer2,
+.footer {
+  background-color: #3c3f41;
+}
+
+.topleft {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.topright {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.bottomleft {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.bottomright {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+
+a{
+  text-decoration: none;
+  color: white ;
+  font-size:1.3em;
+  font-family: "VT323";
+  display: block;
+  padding: 0.9em;
+  transition: background-color 0.5s, color 0.5s, text-indent 0.3s;
+
+}
+
+a:hover {
+  background-color:#ffa3da;
+  color: #f0ed6e;
+  text-indent: 3px;
+}
+
+.lex {
+  color: #f0ed6e;
+}
+
+ul {
+  margin-left: 0px !important;
+  padding-left: 0px !important;
+
+  font-size: 14px;
+  font-weight: 300
+
+  list-style-type: none;
+
+}

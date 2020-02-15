@@ -1,0 +1,19 @@
+db:
+    default:
+        ENGINE: 'django.db.backends.postgresql_psycopg2'
+        NAME: 'desincms'
+        USER: 'cms'
+        PASSWORD: 'D351nch4@4l4m3d4L0r3n4-5P'
+        HOST: 'localhost'
+        PORT: '5432'
+        OPTIONS: {}
+
+key: sdn2-%q*cc1n6$bprdu^jc6j$0u23tre70r%3sjf=5beoz89j&iv8r
+debug: True
+
+email_host: 'smtp.office365.com'
+email_port:  587
+email_host_user: 'no_reply@desincha.com.br'
+email_host_password: 'Yab17576Yab17576'
+use_tls: True                      
+

@@ -1,0 +1,9 @@
+{% extends 'core/dashboard.html' %}
+{% load markup_tags %}
+
+{%  block content %}
+    <div id="createp" class="card-body">
+{#        {{ text | apply_markup: "restructuredtext"  }}#}
+        {{ text|apply_markup:"restructuredtext" }}
+    </div>
+{% endblock %}
