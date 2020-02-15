@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+requirements_dev.txt
+boticashback/settings_dev.py
