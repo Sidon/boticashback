@@ -28,7 +28,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
-FCONF = os.environ.get('CONFB2B', 'local')
+FCONF = os.environ.get('ENVIRONMENT', 'local')
 
 if settings.DEBUG and FCONF == 'local':
     import debug_toolbar
