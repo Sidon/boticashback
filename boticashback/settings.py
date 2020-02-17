@@ -15,8 +15,10 @@ from datetime import timedelta
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+# TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
+
 LOG_DIR = os.path.join(BASE_DIR, 'log')
 DOC_DIR = os.path.join(BASE_DIR, 'doc')
 DATA_DIR = os.path.join(BASE_DIR, 'data')
@@ -69,7 +71,7 @@ ROOT_URLCONF = 'boticashback.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [PROJECT_DIR, os.path.join(BASE_DIR, 'boticashback/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'boticashback/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,17 +123,18 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, 'static'),
-]
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # --------------------------
 REST_FRAMEWORK = {
