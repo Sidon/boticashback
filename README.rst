@@ -58,6 +58,69 @@ Ambiente de desenvolvimento:
     +-------------------+---------------------------+------------+
 
 
+#########################
+Acessando a API via Curl
+#########################
+
+
+Cadastrar um revendedor
+***********************
+
+.. code-block::
+
+    curl --location --request POST 'https://sdn-boticario.herokuapp.com/api/v1/revendedores/' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "full_name": "Frank Vincent Zappa",
+        "cpf": "18375314048",
+        "email": "frank@zappa.net",
+        "password": "master123"
+    }'
+
+Response:
+
+.. code-block::
+
+    {
+        "id": 9,
+        "full_name": "Frank Vincent Zappa",
+        "cpf": "18375314048",
+        "email": "frank@zappa.net"
+    }
+
+Obter Token:
+************
+
+.. code-block::
+
+    curl --location --request POST 'https://sdn-boticario.herokuapp.com/api/token/' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "email": "frank@zappa.net",
+        "password": "master123"
+    }'
+
+Response:
+
+.. code-block::
+
+    {
+        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU4MjA2NzAzMCwianRpIjoiZmY1ZTcwZDU3MjIwNDBhN2E0MjBmY2M2MjE5MzBiZTkiLCJ1c2VyX2lkIjo5fQ.A54xO9Ery7t_G5Whr_5JEpZuLGs3mJkc5ggpS4K6lUI",
+        "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTgxOTgwOTMwLCJqdGkiOiI1ZmI2NDAzZjhmMjE0NjViYjdjNTRkYjg1MjNkMjQzZCIsInVzZXJfaWQiOjl9.IWS2wFI6suHNhJe--r61sfMja0e0Wenhy_iFFwiMoE0"
+    }
+
+API Root:
+*********
+
+.. code-block::
+
+
+    $ curl https://sdn-boticario.herokuapp.com/api/v1/
+    {"revendedores":"https://sdn-boticario.herokuapp.com/api/v1/revendedores/"}
+
+
+
+
 Instalação local
 ****************
 
