@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django import forms
 import django_filters
 from .models import Reseller
 
@@ -8,9 +8,12 @@ class ResellerFilter(django_filters.FilterSet):
         fields = ('full_name',)
 
 
-class ResellerForm(ModelForm):
+class ResellerForm(forms.ModelForm):
     class Meta:
         model = Reseller
         fields = ['full_name', 'cpf']
 
-id
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)

@@ -1,5 +1,5 @@
 from rest_framework import status
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import permissions, mixins, status
 from rest_framework.viewsets import GenericViewSet
 from .serializers import ResellerSerializer
@@ -10,10 +10,18 @@ from apps.core.models import Reseller
 from apps.core.tables import ResellerTable
 from apps.core.forms import ResellerForm, ResellerFilter
 
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.contrib.auth import authenticate, login
+from .forms import LoginForm
+
+
 
 class ResellerViewSet(GenericViewSet, mixins.CreateModelMixin):
     # Allow any user (authenticated or not) to hit this endpoint.
     permission_classes = (AllowAny,)
+
+    # permission_classes = (IsAuthenticated,)
     serializer_class = ResellerSerializer
     queryset = Reseller.objects.all()
 
@@ -58,3 +66,23 @@ class ReadMeView(TemplateView):
         context['text'] = text
 
         return context
+
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(username=cd['username'],
+                   password=cd['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponse('Authenticated', 'successfully')
+                else:
+                    return HttpResponse('Disabled account')
+            else:
+                return HttpResponse('Invalid Login')
+    else:
+        form = LoginForm()
+    return render(request, 'core/login.html', {'form': form})
