@@ -16,17 +16,23 @@ Including another URLconf
 import os
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 from boticashback import settings
 
+router = DefaultRouter()
+# router.register('api/token/', TokenObtainPairView, basename='token_obtain_pair')
+# router.register('api/token/refresh/', TokenRefreshView, basename='token_refresh')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.core.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/v1/', include(router.urls)),
+
 ]
-FCONF = os.environ.get('ENVIRONMENT', 'local')
+FCONF = os.environ['ENVIRONMENT']
 
 if settings.DEBUG and FCONF == 'local':
     import debug_toolbar

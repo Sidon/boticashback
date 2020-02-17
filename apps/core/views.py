@@ -16,7 +16,6 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 
 
-
 class ResellerViewSet(GenericViewSet, mixins.CreateModelMixin):
     # Allow any user (authenticated or not) to hit this endpoint.
     permission_classes = (AllowAny,)
@@ -44,7 +43,7 @@ class ResellerCreateView(CreateView):
     model = Reseller
     template_name = 'core/reseller-create.html'
     form_class = ResellerForm
-    success_url = '/home'
+    success_url = '/'
 
     def form_valid(self, form):
         self.object = form.save()

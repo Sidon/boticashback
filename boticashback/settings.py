@@ -26,7 +26,7 @@ SECRET_KEY = 'gl1ivwd+4xi(y)rh4s5_#jbc1gd&x86#(1h45ltws5xtvi((r#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localst', '127.0.0.1', 'sdn-boticario.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'sdn-boticario.herokuapp.com']
 
 # Application definition
 
@@ -68,7 +68,7 @@ ROOT_URLCONF = 'boticashback.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR, os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

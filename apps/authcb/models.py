@@ -60,17 +60,22 @@ class AuthcbUser(AbstractBaseUser):
 
     email = models.EmailField(max_length=255, unique=True, help_text=help_mail)
     is_active = models.BooleanField('Ativo?', default=True)
-    is_staff = models.BooleanField('Membro do time?', default=False)
+    # is_staff = models.BooleanField('Membro do time?', default=False)
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
     updated_at = models.DateTimeField('Atualizado em', auto_now=True)
     is_admin = models.BooleanField('Admin?', default=False)
 
     # Only for admin interace
+    help_active = "Somente usuários ativos podem ter acesso ao sistema"
+    help_staff = "Para ter acesso o painel admin é preciso fazer parte do staff"
+
     groups = models.ManyToManyField(Group, verbose_name='Grupo', blank=True)
     user_permissions = models.ManyToManyField(Permission, blank=True)
     first_name = models.CharField('Nome', max_length=60, blank=True)
     last_name = models.CharField('Sobrenome', max_length=60, blank=True)
     username = models.CharField('Username', max_length=60, blank=True)
+    date_joined = models.DateTimeField('Data do registro', default=timezone.now)
+    # is_super_user = models.BooleanField('Admin?', default=False)
 
     USERNAME_FIELD = 'email'
 

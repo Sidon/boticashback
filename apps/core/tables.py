@@ -11,6 +11,6 @@ class ResellerTable(tables.Table):
         # template_name = "django_tables2/bootstrap4.html"
         template_name = "core/dt2_bs4.html"
         model = Reseller
-        fields = ('full_name', 'user_name', 'profile_url',)
+        fields = ('full_name', 'email', 'cpf',)
         attrs = {"class": "table table-hover", 'thead': {'class': "thead-light"}}
         empty_text = "Não encontrado!"

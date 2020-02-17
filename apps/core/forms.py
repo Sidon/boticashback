@@ -11,7 +11,7 @@ class ResellerFilter(django_filters.FilterSet):
 class ResellerForm(forms.ModelForm):
     class Meta:
         model = Reseller
-        fields = ['full_name', 'cpf']
+        fields = ['full_name', 'cpf', 'email', 'password']
 
 
 class LoginForm(forms.Form):
