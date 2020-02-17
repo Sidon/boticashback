@@ -15,10 +15,11 @@ from datetime import timedelta
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOC = os.path.join(BASE_DIR, 'doc')
-DATA = os.path.join(BASE_DIR, 'data')
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_DIR = os.path.join(BASE_DIR, 'log')
+DOC_DIR = os.path.join(BASE_DIR, 'doc')
+DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'gl1ivwd+4xi(y)rh4s5_#jbc1gd&x86#(1h45ltws5xtvi((r#'
@@ -68,7 +69,7 @@ ROOT_URLCONF = 'boticashback.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [PROJECT_DIR, os.path.join(BASE_DIR, 'boticashback/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,23 +121,19 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
-
-
-print('==>', STATIC_ROOT )
-print('--->', STATIC_URL)
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_DIR, 'static'),
+]
 
 
 # --------------------------
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JSONWebTokenAuthentication',
