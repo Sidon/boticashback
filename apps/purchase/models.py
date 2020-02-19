@@ -1,8 +1,6 @@
 from django.db import models
-from djmoney.models.fields import MoneyField
 from apps.reseller.models import Reseller
 from apps.cashback.models import CashbackRange, CashbackDebit, CashbackPayment
-
 
 
 class Purchase(models.Model):
@@ -11,10 +9,12 @@ class Purchase(models.Model):
         ('APPROVED', 'Aprovado'),
     )
 
-    reseller = models.ForeignKey(Reseller, verbose_name='Revendedor', on_delete=models.PROTECT, related_name='purchases')
+    reseller = models.ForeignKey(Reseller, verbose_name='Revendedor', on_delete=models.PROTECT,
+                                 related_name='purchases')
     code = models.CharField(verbose_name='Codigo', max_length=20)
-    value = MoneyField(verbose_name='Valor', max_digits=12, decimal_places=2, default_currency='BRL')
+    purchase_value = models.DecimalField(verbose_name='Valor da compra', max_digits=12, decimal_places=2)
     date_purchase = models.DateField('Data da compra')
+    cashback_credit_value = models.DecimalField(verbose_name='Crédito de cashback', max_digits=12, decimal_places=2)
     status = models.CharField(verbose_name='Status', max_length=16, choices=STATUS, default='UNDER_VALIDATION')
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
     updated_at = models.DateTimeField('Atualizado em', auto_now=True)
@@ -29,7 +29,7 @@ class Purchase(models.Model):
         verbose_name_plural = 'Purchases'
 
     @staticmethod
-    def get_cashback_percent(value):
+    def get_cashback_to_debit_percent(value):
         ranges = CashbackRange.objects.all()
         if value and ranges:
             for rng in ranges:
@@ -39,33 +39,35 @@ class Purchase(models.Model):
             return 0
 
     @staticmethod
-    def get_cashback_value(value, percent):
+    def get_cashback_debit_value(value, percent):
         return (value * percent) / 100
 
-
+    # @staticmethod
+    # def get_cashback_credit_value():
 
     def save(self, *args, **kwargs):
         """ Populating cashback value and percentage of purchase """
-        cashback_percent = Purchase.get_cashback_percent(self.value)
-        cashback_value = Purchase.get_cashback_value(self.value, cashback_percent)
+        cashback_percent = Purchase.get_cashback_to_debit_percent(self.purchase_value)
+        cashback_value = Purchase.get_cashback_debit_value(self.purchase_value, cashback_percent)
         created = self.pk is None
         super(Purchase, self).save(*args, **kwargs)
 
         print('created ==>', created)
         print('cashback_percent-->', cashback_percent)
 
-        if created and cashback_percent:
-            purchase = Purchase.objects.get(pk=self.pk)
-            CashbackDebit.objects.create(
-                purchase=purchase,
-                percentage=cashback_percent,
-                cashback_value=cashback_value,
-            )
+        if created:
+            if cashback_percent:
+                purchase = Purchase.objects.get(pk=self.pk)
+                CashbackDebit.objects.create(
+                    purchase=purchase,
+                    percentage=cashback_percent,
+                    cashback_value=cashback_value,
+                )
 
 
 class ApprovedCPF(models.Model):
     reseler = models.OneToOneField(Reseller, on_delete=models.CASCADE)
+
     @property
     def reseller_name(self):
         return self.reseler.full_name
-

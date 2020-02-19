@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 requirements_dev.txt
-boticashback/settings_dev.py
+boticashback/settings/dev.py

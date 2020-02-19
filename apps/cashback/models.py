@@ -1,14 +1,10 @@
-from django.contrib.auth import get_user_model
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-from localflavor.br.models import BRCPFField
-from djmoney.models.fields import MoneyField
 
 
 class CashbackRange(models.Model):
-    start_value = MoneyField(verbose_name='Valor', max_digits=12, decimal_places=2, default_currency='BRL')
-    end_value = MoneyField(verbose_name='Valor', max_digits=12, decimal_places=2, default_currency='BRL')
-    percentage = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=_('Cashback Percentage'))
+    start_value = models.DecimalField(verbose_name='Valor', max_digits=12, decimal_places=2)
+    end_value = models.DecimalField(verbose_name='Valor', max_digits=12, decimal_places=2)
+    percentage = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Porcentagem do Cashback')
 
     class Meta:
         verbose_name = 'Intervalo de valores'
@@ -22,8 +18,8 @@ class CashbackDebit(models.Model):
         ('PAID', 'Pago'),
     )
     purchase = models.OneToOneField('purchase.Purchase', on_delete=models.PROTECT, related_name='debit')
-    percentage = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=_('Cashback Percentage'))
-    cashback_value = MoneyField(verbose_name='Valor', max_digits=12, decimal_places=2, default_currency='BRL')
+    percentage = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Percentagem do cashback')
+    cashback_value = models.DecimalField(verbose_name='Valor', max_digits=12, decimal_places=2)
     status = models.CharField('Status', max_length=8, choices=STATUS, default='PENDING')
 
     class Meta:
@@ -51,3 +47,4 @@ class CashbackPayment(models.Model):
     class Meta:
         verbose_name = 'Cashback Pagamento'
         verbose_name_plural = 'Cashback Pagamentos'
+

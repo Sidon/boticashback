@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from subprocess import PIPE, Popen
-from boticashback.settings import BASE_DIR as DIR
+from boticashback.settings.base import BASE_DIR as DIR
 
 PYC = 'find '+DIR+' -path "*/migrations/*.pyc"  -delete'
 PY = 'find '+DIR+' -path "*/migrations/*.py" -not -name "__init__.py" -delete'

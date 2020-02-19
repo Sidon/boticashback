@@ -1,11 +1,11 @@
 import os
 from django.urls import path, include
 from django.contrib.auth.views import LoginView
-# from rest_framework.routers import DefaultRouter
 from boticashback import settings
 from apps.reseller.views import ResellerViewSet, ResellerListView, ReadMeView, ResellerCreateView
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 from boticashback.urls import router
+from boticashback.settings import base as settings
 
 app_name = 'reseller'
 # router = DefaultRouter()

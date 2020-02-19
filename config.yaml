@@ -8,12 +8,16 @@ db:
         PORT: '5432'
         OPTIONS: {}
 
+email:
+    email_host: 'smtp.<config>.com'
+    email_port:  587
+    email_host_user: 'no_reply@<email.com>'
+    email_host_password: '<your_password>'
+    use_tls: True
+
 key: sdn2-%q*cc1n6$bprdu^jc6j$0u23tre70r%3sjf=5beoz89j&iv8r
 debug: True
 
-email_host: 'smtp.office365.com'
-email_port:  587
-email_host_user: 'no_reply@desincha.com.br'
-email_host_password: 'Yab17576Yab17576'
-use_tls: True                      
+
+
 

@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from localflavor.br.models import BRCPFField
-from djmoney.models.fields import MoneyField
 
 User = get_user_model()
 

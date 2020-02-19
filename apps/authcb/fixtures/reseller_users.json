@@ -1,0 +1,37 @@
+[
+  {
+    "model": "authcb.authcbuser",
+    "pk": 100,
+    "fields": {
+      "email": "jannat@fake.com"
+    }
+  },
+  {
+    "model": "authcb.authcbuser",
+    "id": 101,
+    "fields": {
+      "email": "felix@fake.com"
+    }
+  },
+  {
+    "model": "authcb.authcbuser",
+    "id": 102,
+    "fields": {
+      "email": "isobel@fake.com"
+    }
+  },
+  {
+    "model": "authcb.authcbuser",
+    "id": 103,
+    "fields": {
+      "email": "samera@fake.com"
+    }
+  },
+  {
+    "model": "authcb.authcbuser",
+    "id": 104,
+    "fields": {
+      "email": "ariyha@fake.com"
+    }
+  }
+]

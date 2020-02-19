@@ -5,6 +5,7 @@ from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, Permi
 from django.conf import settings
 import jwt
 
+bnull = dict(null=True, blank=True)
 
 class AuthcbUserManager(BaseUserManager):
 
@@ -21,6 +22,7 @@ class AuthcbUserManager(BaseUserManager):
                     email=self.normalize_email(email),
                 )
                 user.set_password(password)
+
                 user.save(using=self.db)
                 return user
         except:
@@ -46,9 +48,8 @@ class AuthcbUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(max_length=255, unique=True, help_text=help_mail)
     is_active = models.BooleanField('Ativo?', default=True)
-    # is_staff = models.BooleanField('Membro do time?', default=False)
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
-    updated_at = models.DateTimeField('Atualizado em', auto_now=True)
+    updated_at = models.DateTimeField('Atualizado em', auto_now=True, **bnull)
     is_admin = models.BooleanField('Admin?', default=False)
 
     # Only for admin interace

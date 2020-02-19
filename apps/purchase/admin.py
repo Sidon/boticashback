@@ -4,7 +4,9 @@ from .models import Purchase, ApprovedCPF
 
 @admin.register(Purchase)
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ('reseller_fullname', 'date_purchase', 'code', 'value', 'cashback_percentage', 'cashback_value', 'status',)
+    list_display = ('reseller_fullname', 'date_purchase', 'code', 'purchase_value', 'cashback_percentage',
+                    'cashback_value', 'status',)
+
     list_display_links = list_display
     search_fields = ('code',)
 
@@ -13,7 +15,6 @@ class PurchaseAdmin(admin.ModelAdmin):
 
     def cashback_percentage(self, instance):
         return instance.debit.percentage
-
 
     def cashback_value(self, instance):
         return instance.debit.cashback_value

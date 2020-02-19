@@ -1,0 +1,47 @@
+[
+  {
+    "model": "reseller.reseller",
+    "pk": 101,
+    "fields": {
+      "cpf": "67666442220",
+      "full_name": "Jannat Malone",
+      "password": "master123"
+    }
+  },
+  {
+    "model": "reseller.reseller",
+    "pk": 102,
+    "fields": {
+      "cpf": "76485626182",
+      "full_name": "Felix Brandt",
+      "password": "master123"
+    }
+  },
+  {
+    "model": "reseller.reseller",
+    "pk": 103,
+    "fields": {
+      "cpf": "74287565533",
+      "full_name": "Isobel Valentine",
+      "password": "master123"
+    }
+  },
+  {
+    "model": "reseller.reseller",
+    "pk": 104,
+    "fields": {
+      "cpf": "56474447338",
+      "full_name": "Samera Sheehan",
+      "password": "master123"
+    }
+  },
+  {
+    "model": "reseller.reseller",
+    "pk": 105,
+    "fields": {
+      "cpf": "15867655156",
+      "full_name": "Ariyah Choi",
+      "password": "master123"
+    }
+  }
+]

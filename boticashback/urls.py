@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
-from boticashback import settings
 from .views import HomePageView
+from boticashback.settings import base as settings
 
 router = DefaultRouter()
 # router.register('api/token/', TokenObtainPairView, basename='token_obtain_pair')

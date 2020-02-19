@@ -1,0 +1,29 @@
+[
+  {
+    "model": "cashback.cashbackrange",
+    "pk": 1,
+    "fields": {
+      "start_value": "0.00",
+      "end_value": "1000.00",
+      "percentage": 10
+    }
+  },
+  {
+    "model": "cashback.cashbackrange",
+    "pk": 2,
+    "fields": {
+      "start_value": 1000,
+      "end_value": 1500,
+      "percentage": 15
+    }
+  },
+  {
+    "model": "cashback.cashbackrange",
+    "pk": 3,
+    "fields": {
+      "start_value": 1500,
+      "end_value": 999999,
+      "percentage": 20
+    }
+  }
+]

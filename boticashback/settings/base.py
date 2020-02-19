@@ -11,13 +11,15 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
 from datetime import timedelta
+import yaml
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
+SETTINGS_DIR = os.path.dirname(__file__)
+PROJECT_ROOT = os.path.split(SETTINGS_DIR)[0]
+BASE_DIR = os.path.split(PROJECT_ROOT)[0]
 
 LOG_DIR = os.path.join(BASE_DIR, 'log')
 DOC_DIR = os.path.join(BASE_DIR, 'doc')
@@ -25,14 +27,23 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'gl1ivwd+4xi(y)rh4s5_#jbc1gd&x86#(1h45ltws5xtvi((r#'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'sdn-boticario.herokuapp.com']
+DAYS_TO_CASHBACK = None
+#
+# try:
+#     with open('./cashback.yaml', 'r') as f:
+#         cashb_settings = yaml.safe_load(f)
+#         DAYS_TO_CASHBACK = cashb_settings['days_to_cashback']
+# except IOError as e:
+#     print("I/O error({0}): {1}".format(e.errno, e.strerror))
+#     print("Erro inesperado", sys.exc_info()[0])
+#     raise
+# except:
+#     raise
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -149,7 +160,7 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'authcb.AuthcbUser'
 
 try:
-    from boticashback.settings_dev import DEV_APPS, DEBUG_TOOLBAR_CONFIG, DEBUG_TOOLBAR_PANELS, DEV_MIDDLEWARE, INTERNAL_IPS
+    from boticashback.settings.dev import DEV_APPS, DEBUG_TOOLBAR_CONFIG, DEBUG_TOOLBAR_PANELS, DEV_MIDDLEWARE, INTERNAL_IPS
 
     INSTALLED_APPS += DEV_APPS
     MIDDLEWARE += DEV_MIDDLEWARE
