@@ -3,7 +3,7 @@ from rest_framework.test import APITestCase, APIClient
 from django.test import TestCase
 from django.urls import reverse
 
-from apps.core.models import Reseller
+from apps.reseller.models import Reseller
 
 
 class ResellerAPITestCase(APITestCase):
@@ -19,7 +19,7 @@ class ResellerAPITestCase(APITestCase):
         cls.password = 'master123'
 
     def test_create_Reseller(self):
-        url = reverse('core:resellers-list')
+        url = reverse('reseller:resellers-list')
         data = {
             "email": "Reseller@test.net",
             "full_name": "Testing Reseller",
@@ -45,7 +45,7 @@ class ResellerAPITestCase(APITestCase):
         self.refresh = response.data['refresh']
 
     def test_create_unique_email(self):
-        url = reverse('core:resellers-list')
+        url = reverse('reseller:resellers-list')
         data = {
             "email": "admin_reseler@test.net",
             "name": "Creating unique Reseller via test",
@@ -58,7 +58,7 @@ class ResellerAPITestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_create_ivalid_cpf(self):
-        url = reverse('core:resellers-list')
+        url = reverse('reseller:resellers-list')
         data = {
             "email": "unique_cpf@test.net",
             "name": "Testing Reseller cpf",

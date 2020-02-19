@@ -1,23 +1,9 @@
 from datetime import datetime, timedelta
 from django.db import (models, transaction)
 from django.utils import timezone
-from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, Permission, Group)
+from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, Permission, Group, PermissionsMixin)
 from django.conf import settings
 import jwt
-
-
-# class PermissionCore(Permission):
-#     class Meta:
-#         proxy = True
-#         verbose_name = 'Permissão'
-#         verbose_name_plural = 'Permissões'
-#
-#
-# class GroupCore(Group):
-#     class Meta:
-#         proxy = True
-#         verbose_name = 'Grupo'
-#         verbose_name_plural = 'Grupos'
 
 
 class AuthcbUserManager(BaseUserManager):
@@ -50,9 +36,9 @@ class AuthcbUserManager(BaseUserManager):
         return user
 
 
-class AuthcbUser(AbstractBaseUser):
+class AuthcbUser(AbstractBaseUser, PermissionsMixin):
     """
-    An abstract core class implementing a fully featured User model with
+    An abstract reseller class implementing a fully featured User model with
     admin-compliant permissions.
 
     """

@@ -1,0 +1,20 @@
+{% extends 'reseller/dashboard.html' %}
+{% load render_table from django_tables2 %}
+{#{% load title from django_tables2 %}#}
+{% load querystring from django_tables2 %}
+{% load bootstrap4 %}
+
+
+{%  block content %}
+    {% if filter %}
+        <div class="float-right">
+            <form action="" method="get" class="form form-inline">
+                {% bootstrap_form filter.form layout='inline' %}
+                {% bootstrap_button 'Filtro' %}
+            </form>
+        </div>
+    {% endif %}
+
+    {% render_table table  %}
+
+{% endblock %}

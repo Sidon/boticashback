@@ -27,16 +27,20 @@ router = DefaultRouter()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('core', include('apps.core.urls')),
+    path('reseller', include('apps.reseller.urls')),
     path('', HomePageView.as_view(), name='home'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/v1/', include(router.urls)),
 
 ]
-FCONF = os.environ['ENVIRONMENT']
 
-if settings.DEBUG and FCONF == 'local':
+try:
+    ENV = os.environ['ENVIRONMENT']
+except:
+    ENV = 'local'
+
+if settings.DEBUG and ENV == 'local':
     import debug_toolbar
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),

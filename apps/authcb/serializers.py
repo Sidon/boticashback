@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from apps.core.models import Reseller
+from apps.reseller.models import Reseller
 
 
 class RegistrationSerializer(serializers.ModelSerializer):

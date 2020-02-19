@@ -1,0 +1,18 @@
+{% extends 'reseller/dashboard.html' %}
+{% block title %}Log-in{% endblock %}
+{% block content %}
+    <div style="text-align: center;">
+        <h1>Log-in</h1>
+        <p>Entre com as credenciais.</p>
+        <form action="" method="post">
+            <div class="form-group">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <div>
+                    <p><input type="submit" value="Log-in">
+                    <input type="submit" value="Cadastre-se"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+{%  endblock %}
