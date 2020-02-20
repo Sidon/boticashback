@@ -8,6 +8,11 @@ Descrição
 
 | Desafio – “Eu revendedor ‘O Boticário’ quero ter benefícios de acordo com o meu volume de vendas”.
 
+TL;DR
+*******
+| A aplicação está hospedada no Heroku http://www.heroku.com.
+| Para testá-la clique: https://sdn-boticario.herokuapp.com/.
+| Repositorio no github: https://github.com/Sidon/boticashb.
 
 PROBLEMA/OPORTUNIDADE
 *********************
@@ -21,16 +26,23 @@ cadastrarem suas compras e acompanhar o retorno de cashback de cada um.
 Cashback quer dizer “dinheiro de volta”, e funciona de forma simples: o revendedor faz uma
 compra e seu benefício vem com a devolução de parte do dinheiro gasto.
 
+DESCRIÇÃO DA SOLUÇÃO PROPOSTA
+*****************************
+A applicação está sendo desenvolvida em python/django, tanto no backend (API REST e GraphQL) como no front-end,
+contendo 4 subapps (Authenticacao, Caschback, Compras e Revendedores). Usuários administradores poderão cadastrar
+novos revendedores, revendedores por sua vez só podoerão cadastar apenas suas compras. Ao ser cadastrado uma compra,
+o sistema deverá, automaticamente, checar se aquele revendedor tem valores de cachback a serem resgatados (haverá
+uma configuração para o numero de dias em que o resgate poderá serfeito) e gerar um débito (crédito para o revendedor)
+de cashback, se aplicável, para aquela conta.
+
+Todas as funcionalidades serão disponibilizadas no backend via API REST e Graphql, assim como no front-end através
+da url https://sdn-boticario.herokuapp.com/reseller/, para acessar como administrador, ao ser solicitado as crdenciais,
+digite: "admin" para o usuário e "Master123", para a senha (sem as aspas).
 
 
 :Date: **15/02/2020**
 :Author: **Sidon Duarte**
 
-TL;DR
-*******
-| A aplicação está hospedada no Heroku http://www.heroku.com.
-| Para testá-la clique: https://sdn-boticario.herokuapp.com/.
-| Repositorio no github: https://github.com/Sidon/boticashb.
 
 Ambiente de desenvolvimento:
 ****************************
