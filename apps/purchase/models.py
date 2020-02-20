@@ -2,6 +2,7 @@ from django.db import models
 from apps.reseller.models import Reseller
 from apps.cashback.models import CashbackRange, CashbackDebit, CashbackPayment
 
+bnull = dict(blank=True, null=True)
 
 class Purchase(models.Model):
     STATUS = (
@@ -14,7 +15,7 @@ class Purchase(models.Model):
     code = models.CharField(verbose_name='Codigo', max_length=20)
     purchase_value = models.DecimalField(verbose_name='Valor da compra', max_digits=12, decimal_places=2)
     date_purchase = models.DateField('Data da compra')
-    cashback_credit_value = models.DecimalField(verbose_name='Crédito de cashback', max_digits=12, decimal_places=2)
+    cashback_credit_value = models.DecimalField(verbose_name='Crédito de cashback', max_digits=12, decimal_places=2, **bnull)
     status = models.CharField(verbose_name='Status', max_length=16, choices=STATUS, default='UNDER_VALIDATION')
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
     updated_at = models.DateTimeField('Atualizado em', auto_now=True)
@@ -42,8 +43,10 @@ class Purchase(models.Model):
     def get_cashback_debit_value(value, percent):
         return (value * percent) / 100
 
-    # @staticmethod
-    # def get_cashback_credit_value():
+    @staticmethod
+    def get_cashback_credit_value(purchase_date, reseller):
+        pass
+
 
     def save(self, *args, **kwargs):
         """ Populating cashback value and percentage of purchase """

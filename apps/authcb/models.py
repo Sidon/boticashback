@@ -48,7 +48,7 @@ class AuthcbUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(max_length=255, unique=True, help_text=help_mail)
     is_active = models.BooleanField('Ativo?', default=True)
-    created_at = models.DateTimeField('Criado em', auto_now_add=True)
+    created_at = models.DateTimeField('Criado em', auto_now_add=True, **bnull)
     updated_at = models.DateTimeField('Atualizado em', auto_now=True, **bnull)
     is_admin = models.BooleanField('Admin?', default=False)
 

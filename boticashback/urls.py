@@ -22,17 +22,14 @@ from .views import HomePageView
 from boticashback.settings import base as settings
 
 router = DefaultRouter()
-# router.register('api/token/', TokenObtainPairView, basename='token_obtain_pair')
-# router.register('api/token/refresh/', TokenRefreshView, basename='token_refresh')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('reseller', include('apps.reseller.urls')),
+    path('reseller/', include('apps.reseller.urls')),
     path('', HomePageView.as_view(), name='home'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/v1/', include(router.urls)),
-
 ]
 
 try:

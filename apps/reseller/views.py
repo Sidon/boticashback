@@ -15,7 +15,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 
-
+# Backend
 class ResellerViewSet(GenericViewSet, mixins.CreateModelMixin):
     # Allow any user (authenticated or not) to hit this endpoint.
     permission_classes = (AllowAny,)
@@ -24,7 +24,7 @@ class ResellerViewSet(GenericViewSet, mixins.CreateModelMixin):
     serializer_class = ResellerSerializer
     queryset = Reseller.objects.all()
 
-
+# Front
 class ResellerListView(ListView):
     model = Reseller
     template_name = 'reseller/reseller_list.html'
@@ -38,7 +38,7 @@ class ResellerListView(ListView):
         context['table'] = table
         return context
 
-
+# Front
 class ResellerCreateView(CreateView):
     model = Reseller
     template_name = 'reseller/reseller-create.html'
@@ -49,7 +49,7 @@ class ResellerCreateView(CreateView):
         self.object = form.save()
         return HttpResponseRedirect(self.get_success_url())
 
-
+# Front
 class ReadMeView(TemplateView):
     template_name = "reseller/readme.html"
 
@@ -66,7 +66,7 @@ class ReadMeView(TemplateView):
 
         return context
 
-
+# Front
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
