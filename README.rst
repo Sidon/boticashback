@@ -39,7 +39,7 @@ Todas as funcionalidades serão disponibilizadas no backend via API REST e Graph
 da url https://sdn-boticario.herokuapp.com/, para acessar como administrador, ao ser solicitado as crdenciais,
 digite:
 
-    :Usuário: admin
+    :Usuário: admin@fakemail.com
     :Senha: Master123
 
 
@@ -70,8 +70,6 @@ Ambiente de desenvolvimento:
 
 :Date: **15/02/2020**
 :Author: **Sidon Duarte**
-
-
 
 #########################
 Acessando a API via Curl
