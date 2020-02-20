@@ -20,8 +20,10 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 from .views import HomePageView
 from boticashback.settings import base as settings
+from apps.reseller.views import ResellerViewSet
 
 router = DefaultRouter()
+router.register('revendeores',ResellerViewSet,basename='reselers')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

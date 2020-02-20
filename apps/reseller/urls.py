@@ -9,8 +9,8 @@ from rest_framework import routers
 from boticashback.settings import base as settings
 
 app_name = 'reseller'
-router = routers.SimpleRouter()
-router.register('revendedores', ResellerViewSet, basename='resellers')
+# router = routers.SimpleRouter()
+# router.register('revendedores', ResellerViewSet, basename='resellers')
 
 urlpatterns = [
     # path('api/v1/', include(router.urls)),
@@ -20,4 +20,4 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='reseller/login.html'), name='login'),
 ]
 
-urlpatterns += router.urls
+# urlpatterns += router.urls

@@ -9,11 +9,15 @@ from apps.purchase.models import Purchase
 
 
 class Command(BaseCommand):
+    # fixtures_dir = os.path.join(settings.BASE_DIR, 'apps/cashback/fixtures')
+    # fixture_file = os.path.join(fixtures_dir, 'cashback_range.json')
+
     def handle(self, **options):
-        ids = 101, 102, 103, 104, 103, 101
+        ids = 101, 102, 103, 104, 103, 101, 105, 106, 107, 108, 109, 110, 107, 107
         success = True
-        for n in range(7):
-            chcs = choices(ids, k=3)
+
+        for n in range(20):
+            chcs = choices(ids, k=6)
             for reseller in chcs:
                 purchase_value = uniform(1, 4687)
                 try:
@@ -28,8 +32,6 @@ class Command(BaseCommand):
                     print('Value==>', Decimal(purchase_value))
                     print('Error-->', e)
 
-        msg = 'dados cadastrados com sucesso' if success else 'Falha ao cadastrar os dados'
-        print(msg)
 
         msg = "Dados carregados com sucesso..." if success else "Falha ao carregar os dados..."
         print(msg)
