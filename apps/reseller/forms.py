@@ -9,6 +9,7 @@ class ResellerFilter(django_filters.FilterSet):
 
 
 class ResellerForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = Reseller
         fields = ['full_name', 'cpf', 'email', 'password']

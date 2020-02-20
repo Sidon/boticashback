@@ -19,24 +19,29 @@ from .forms import LoginForm
 class ResellerViewSet(GenericViewSet, mixins.CreateModelMixin):
     # Allow any user (authenticated or not) to hit this endpoint.
     permission_classes = (AllowAny,)
-
     # permission_classes = (IsAuthenticated,)
     serializer_class = ResellerSerializer
     queryset = Reseller.objects.all()
 
+
 # Front
 class ResellerListView(ListView):
+    permission_classes = (IsAuthenticated,)
     model = Reseller
     template_name = 'reseller/reseller_list.html'
     context_object_name = 'Reseller'
     filterset_class = ResellerFilter
 
     def get_context_data(self, **kwargs):
+        if self.request.user.is_authenticated:
+            pass
+
         context = super(ResellerListView, self).get_context_data(**kwargs)
         table = ResellerTable(Reseller.objects.all().order_by('full_name'))
         RequestConfig(self.request, paginate={'per_page': 10}).configure(table)
         context['table'] = table
         return context
+
 
 # Front
 class ResellerCreateView(CreateView):

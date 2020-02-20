@@ -28,8 +28,8 @@ compra e seu benefício vem com a devolução de parte do dinheiro gasto.
 
 TL;DR
 *******
-| A aplicação foi hospedada no `Heroku <http://www.heroku.com>`_.
-| Para testá-la clique: https://<in progress>/.
+| A aplicação está hospedada no Heroku http://www.heroku.com.
+| Para testá-la clique: https://sdn-boticario.herokuapp.com/.
 | Repositorio no github: https://github.com/Sidon/boticashb.
 
 Ambiente de desenvolvimento:

@@ -7,7 +7,8 @@ import jwt
 
 bnull = dict(null=True, blank=True)
 
-class AuthcbUserManager(BaseUserManager):
+
+class UserManager(BaseUserManager):
 
     def create_user(self, email, password):
         """
@@ -22,23 +23,26 @@ class AuthcbUserManager(BaseUserManager):
                     email=self.normalize_email(email),
                 )
                 user.set_password(password)
-
-                user.save(using=self.db)
+                user.save(using=self._db)
                 return user
         except:
             raise
 
-    def create_superuser(self, email, password='master'):
+    def create_superuser(self, email, password):
+        if not password:
+            password = 'Master123'
         user = self.create_user(
-            email,
+            email=email,
             password=password,
         )
+        user.is_superuser = True
         user.is_admin = True
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
 
-class AuthcbUser(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin):
     """
     An abstract reseller class implementing a fully featured User model with
     admin-compliant permissions.
@@ -48,9 +52,11 @@ class AuthcbUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(max_length=255, unique=True, help_text=help_mail)
     is_active = models.BooleanField('Ativo?', default=True)
+
     created_at = models.DateTimeField('Criado em', auto_now_add=True, **bnull)
     updated_at = models.DateTimeField('Atualizado em', auto_now=True, **bnull)
     is_admin = models.BooleanField('Admin?', default=False)
+    is_staff = models.BooleanField('Acesso ao Painel', default=False)
 
     # Only for admin interace
     help_active = "Somente usuários ativos podem ter acesso ao sistema"
@@ -65,8 +71,8 @@ class AuthcbUser(AbstractBaseUser, PermissionsMixin):
     # is_super_user = models.BooleanField('Admin?', default=False)
 
     USERNAME_FIELD = 'email'
-
-    objects = AuthcbUserManager()
+    EMAIL_FIELD = 'email'
+    objects = UserManager()
 
     def __str__(self):
         return self.email
@@ -77,6 +83,6 @@ class AuthcbUser(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         return True
 
-    @property
-    def is_staff(self):
-        return self.is_admin
+    # def clean(self):
+    #     super(User, self).clean()
+    #     self.email = self.__class__.objects.normalize_email(self.email)

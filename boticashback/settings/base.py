@@ -157,7 +157,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-AUTH_USER_MODEL = 'authcb.AuthcbUser'
+AUTH_USER_MODEL = 'authcb.User'
 
 try:
     from boticashback.settings.dev import DEV_APPS, DEBUG_TOOLBAR_CONFIG, DEBUG_TOOLBAR_PANELS, DEV_MIDDLEWARE, INTERNAL_IPS
@@ -208,3 +208,5 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 50
 }
+
+LOGIN_URL = 'login/'
