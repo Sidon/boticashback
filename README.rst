@@ -12,7 +12,7 @@ TL;DR
 *******
 | A aplicação está hospedada no Heroku http://www.heroku.com.
 | Para testá-la clique: https://sdn-boticario.herokuapp.com/.
-| Repositorio no github: https://github.com/Sidon/boticashb.
+| Repositorio no github: https://github.com/Sidon/boticashback.
 
 PROBLEMA/OPORTUNIDADE
 *********************
@@ -36,7 +36,7 @@ uma configuração para o numero de dias em que o resgate poderá serfeito) e ge
 de cashback, se aplicável, para aquela conta.
 
 Todas as funcionalidades serão disponibilizadas no backend via API REST e Graphql, assim como no front-end através
-da url https://sdn-boticario.herokuapp.com/reseller/, para acessar como administrador, ao ser solicitado as crdenciais,
+da url https://sdn-boticario.herokuapp.com/, para acessar como administrador, ao ser solicitado as crdenciais,
 digite:
 
     :Usuário: admin
