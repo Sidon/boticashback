@@ -37,11 +37,10 @@ de cashback, se aplicável, para aquela conta.
 
 Todas as funcionalidades serão disponibilizadas no backend via API REST e Graphql, assim como no front-end através
 da url https://sdn-boticario.herokuapp.com/reseller/, para acessar como administrador, ao ser solicitado as crdenciais,
-digite: "admin" para o usuário e "Master123", para a senha (sem as aspas).
+digite:
 
-
-:Date: **15/02/2020**
-:Author: **Sidon Duarte**
+    :Usuário: admin
+    :Senha: Master123
 
 
 Ambiente de desenvolvimento:
@@ -68,6 +67,10 @@ Ambiente de desenvolvimento:
     +-------------------+---------------------------+------------+
     | DRF               | dajano-rest-fw            |  4.4.0     |
     +-------------------+---------------------------+------------+
+
+:Date: **15/02/2020**
+:Author: **Sidon Duarte**
+
 
 
 #########################
