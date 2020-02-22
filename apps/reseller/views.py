@@ -1,4 +1,3 @@
-from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import permissions, mixins, status
 from rest_framework.viewsets import GenericViewSet
@@ -9,11 +8,11 @@ from django.http import HttpResponseRedirect
 from apps.reseller.models import Reseller
 from apps.reseller.tables import ResellerTable
 from apps.reseller.forms import ResellerForm, ResellerFilter
-
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
+
 
 # Backend
 class ResellerViewSet(GenericViewSet, mixins.CreateModelMixin):
@@ -51,7 +50,14 @@ class ResellerCreateView(CreateView):
     success_url = '/'
 
     def form_valid(self, form):
-        self.object = form.save()
+        self.object = form
+        cd = form.cleaned_data
+        reseller = Reseller()
+        reseller.full_name = cd['full_name']
+        reseller.cpf = cd['cpf']
+        reseller.email = cd['email']
+        reseller.set_password(cd['password'])
+        reseller.save()
         return HttpResponseRedirect(self.get_success_url())
 
 # Front

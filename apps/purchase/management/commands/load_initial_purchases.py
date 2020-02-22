@@ -32,6 +32,5 @@ class Command(BaseCommand):
                     print('Value==>', Decimal(purchase_value))
                     print('Error-->', e)
 
-
         msg = "Dados carregados com sucesso..." if success else "Falha ao carregar os dados..."
         print(msg)

@@ -1,8 +1,11 @@
 from django.db import models
 from apps.reseller.models import Reseller
 from apps.cashback.models import CashbackRange, CashbackDebit, CashbackPayment
+from localflavor.br.models import BRCPFField
+
 
 bnull = dict(blank=True, null=True)
+
 
 class Purchase(models.Model):
     STATUS = (
@@ -69,8 +72,9 @@ class Purchase(models.Model):
 
 
 class ApprovedCPF(models.Model):
-    reseler = models.OneToOneField(Reseller, on_delete=models.CASCADE)
-
+    cpf = BRCPFField('CPF', unique=True)
+    reseller = models.OneToOneField(Reseller, on_delete=models.CASCADE, **bnull)
+    description = models.TextField('Descrição', **bnull)
     @property
     def reseller_name(self):
-        return self.reseler.full_name
+        return self.reseller.full_name

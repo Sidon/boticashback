@@ -8,12 +8,19 @@ class PurchaseSerializer(serializers.ModelSerializer):
     reseller = ResellerSerializer(read_only=True)
     class Meta:
         model = Purchase
-        fields = {'id', 'data_purchase', 'reseller', 'codigo', 'value'}
+        fields = ('id', 'purchase_data', 'reseller', 'codigo', 'value')
 
 
-class ApprovedCPFSerializer(serializers.ModelSerializer):
-    reseller = ResellerSerializer(read_only=True)
-
+class AprovedCPFSerializer(serializers.ModelSerializer):
+    # reseller = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     class Meta:
         model = ApprovedCPF
-        fields = {'id', 'reseller'}
+        fields = ('id', 'cpf', 'description')
+
+    # def create(self, validated_data):
+    #     print('cpf====>', validated_data)
+    #
+    #     cpf = ApprovedCPF.objects.create(**validated_data)
+    #     return cpf
+
+

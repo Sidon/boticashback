@@ -14,6 +14,8 @@ class UserManager(BaseUserManager):
         """
         Creates and saves a User with the given email,and password.
         """
+        print('======================>', password)
+
         if not email:
             raise ValueError('O Campo email é obrigatorio')
         try:
@@ -83,6 +85,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     def has_module_perms(self, app_label):
         return True
 
-    # def clean(self):
-    #     super(User, self).clean()
-    #     self.email = self.__class__.objects.normalize_email(self.email)

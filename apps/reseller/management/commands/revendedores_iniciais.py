@@ -1,12 +1,14 @@
-import os
-from django.conf import settings
 from collections import namedtuple
 from django.core.management.base import BaseCommand
 from apps.reseller.models import Reseller
+from apps.purchase.models import Purchase
 
 
 class Command(BaseCommand):
     def handle(self, **options):
+
+        Purchase.objects.all().delete()
+        Reseller.objects.all().delete()
 
         names = (
            'Jannat Malone',
@@ -54,17 +56,16 @@ class Command(BaseCommand):
 
         id_user = 100
         success = True
-        for reseller in data:
+        for d in data:
             id_user += 1
             try:
-                Reseller.objects.create(
-                    id=id_user,
-                    full_name=reseller.full_name,
-                    cpf=reseller.cpf,
-                    email=reseller.email,
-                    password='master123'
-
-                )
+                reseller = Reseller()
+                reseller.id = id_user
+                reseller.full_name = d.full_name
+                reseller.email = d.email
+                reseller.cpf = d.cpf
+                reseller.set_password('master123')
+                reseller.save()
             except Exception as e:
                 success = False
                 print(f'Errro no cadastro do reseller: {id_user}/{reseller.email}:')
