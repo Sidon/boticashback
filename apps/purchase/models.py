@@ -50,7 +50,6 @@ class Purchase(models.Model):
     def get_cashback_credit_value(purchase_date, reseller):
         pass
 
-
     def save(self, *args, **kwargs):
         """ Populating cashback value and percentage of purchase """
         cashback_percent = Purchase.get_cashback_to_debit_percent(self.purchase_value)
@@ -66,7 +65,6 @@ class Purchase(models.Model):
                     percentage=cashback_percent,
                     cashback_value=cashback_value,
                 )
-
 
 
 class ApprovedCPF(models.Model):

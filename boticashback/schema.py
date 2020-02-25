@@ -1,10 +1,12 @@
 import graphene
 import graphql_jwt
 from apps.authcb.schema import UserProfileQuery
+from apps.purchase.schema import ApprovedCPFQuery
 
 
 class Query(
     UserProfileQuery,
+    ApprovedCPFQuery,
     graphene.ObjectType,
 ):
     pass
