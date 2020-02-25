@@ -21,6 +21,7 @@ class Command(BaseCommand):
            'Eden Parks',
            'Anastasia Maynard',
            'Carol Camacho',
+           'Frank Vincent Zappa'
         )
 
         emails = (
@@ -34,6 +35,7 @@ class Command(BaseCommand):
             "eden@fake.com",
             "anastasia@fake.com",
             "carol@fake.com",
+            'frank@zappa.net',
         )
 
         cpfs = (
@@ -47,6 +49,7 @@ class Command(BaseCommand):
             '43310240088',
             '11523649011',
             '45760759000',
+            '78432782815',
         )
 
         ResellerFake = namedtuple('Reseler', 'full_name email cpf')
