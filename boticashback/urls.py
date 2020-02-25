@@ -21,11 +21,15 @@ from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshVie
 from .views import HomePageView
 from boticashback.settings import base as settings
 from apps.reseller.views import ResellerViewSet
-from apps.purchase.views import ApprovedCPFViewSet, CadastroCPFView
+from apps.purchase.views import ApprovedCPFViewSet, PurchaseViewSet, CashbackAcumullated
+from graphene_django.views import GraphQLView
 
 router = DefaultRouter()
 router.register('revendedores', ResellerViewSet, basename='reselers')
-router.register('cadastro-cpf-pre-aprovado', ApprovedCPFViewSet, basename='cpfs')
+router.register('cadastro-cpf-pre-aprovados', ApprovedCPFViewSet, basename='cpfs')
+router.register('cadastro-de-compra', PurchaseViewSet, basename='compras')
+router.register('cadastro-de-compra-admin', PurchaseViewSet, basename='admin-compras')
+router.register('cashback-acumulada', CashbackAcumullated, basename='cashback-acumulado')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,6 +38,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/v1/', include(router.urls)),
+    path("graphql", GraphQLView.as_view(graphiql=True)),
 ]
 
 

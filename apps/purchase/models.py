@@ -9,8 +9,8 @@ bnull = dict(blank=True, null=True)
 
 class Purchase(models.Model):
     STATUS = (
-        ('UNDER_VALIDATION', 'Em avaliação'),
-        ('APPROVED', 'Aprovado'),
+        ('EM_AVALIACAO', 'Em avaliação'),
+        ('APROVADO', 'Aprovado'),
     )
 
     reseller = models.ForeignKey(Reseller, verbose_name='Revendedor', on_delete=models.PROTECT,
@@ -19,7 +19,7 @@ class Purchase(models.Model):
     purchase_value = models.DecimalField(verbose_name='Valor da compra', max_digits=12, decimal_places=2)
     date_purchase = models.DateField('Data da compra')
     cashback_credit_value = models.DecimalField(verbose_name='Crédito de cashback', max_digits=12, decimal_places=2, **bnull)
-    status = models.CharField(verbose_name='Status', max_length=16, choices=STATUS, default='UNDER_VALIDATION')
+    status = models.CharField(verbose_name='Status', max_length=16, choices=STATUS, default='EM_AVALIACAO')
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
     updated_at = models.DateTimeField('Atualizado em', auto_now=True)
 
@@ -58,9 +58,6 @@ class Purchase(models.Model):
         created = self.pk is None
         super(Purchase, self).save(*args, **kwargs)
 
-        print('created ==>', created)
-        print('cashback_percent-->', cashback_percent)
-
         if created:
             if cashback_percent:
                 purchase = Purchase.objects.get(pk=self.pk)
@@ -69,6 +66,7 @@ class Purchase(models.Model):
                     percentage=cashback_percent,
                     cashback_value=cashback_value,
                 )
+
 
 
 class ApprovedCPF(models.Model):
