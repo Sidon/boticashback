@@ -13,7 +13,7 @@ class CashbackDebitSerializer(serializers.ModelSerializer):
     purchase = PurchaseSerializer(read_only=True)
     class Meta:
         model = CashbackDebit
-        fields = {'purchase', 'percentage', 'cashback_value', 'status',}
+        fields = ('purchase', 'percentage', 'cashback_value', 'status',)
 
 
 class CashbackPaymentSerializer(serializers.ModelSerializer):

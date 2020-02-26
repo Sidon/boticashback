@@ -1,5 +1,6 @@
 from collections import namedtuple
 from django.core.management.base import BaseCommand
+from apps.cashback.models import CashbackDebit
 from apps.reseller.models import Reseller
 from apps.purchase.models import Purchase
 
@@ -7,6 +8,7 @@ from apps.purchase.models import Purchase
 class Command(BaseCommand):
     def handle(self, **options):
 
+        CashbackDebit.objects.all().delete()
         Purchase.objects.all().delete()
         Reseller.objects.all().delete()
 

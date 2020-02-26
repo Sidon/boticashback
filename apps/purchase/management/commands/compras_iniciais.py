@@ -9,8 +9,6 @@ from apps.purchase.models import Purchase
 
 
 class Command(BaseCommand):
-    # fixtures_dir = os.path.join(settings.BASE_DIR, 'apps/cashback/fixtures')
-    # fixture_file = os.path.join(fixtures_dir, 'cashback_range.json')
 
     def handle(self, **options):
         ids = 101, 102, 103, 104, 103, 101, 105, 106, 107, 108, 109, 110, 107, 107
