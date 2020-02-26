@@ -14,7 +14,6 @@ class UserManager(BaseUserManager):
         """
         Creates and saves a User with the given email,and password.
         """
-        print('======================>', password)
 
         if not email:
             raise ValueError('O Campo email é obrigatorio')

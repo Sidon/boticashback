@@ -132,9 +132,25 @@ API Root:
     {"revendedores":"https://sdn-boticario.herokuapp.com/api/v1/revendedores/"}
 
 
-
-
 Instalação local
 ****************
 
-IN PROGRESS
+1) Clone o repositorio https://github.com/Sidon/boticashback
+2) Crie um ambiente virtual com seu gerenciador favorito (conda, pyenv, virtualenv, etc)
+3) No diretorio clonado, instale os requirements com o comando:
+
+.. code-block::
+
+    $ pip install -r requirements.txt
+
+4) Crie os dados iniciais com o comando:
+
+.. code-block::
+
+    $ python ./manage.py initial_data
+
+5) Execute a aplicação com o comando:
+
+.. code-block::
+
+    $ python ./manage.py runserver
