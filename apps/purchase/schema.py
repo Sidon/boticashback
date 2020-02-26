@@ -21,7 +21,6 @@ class ApprovedCPFQuery(graphene.ObjectType):
 
     all_cpfs = graphene.List(ApprovedCPFType, token=graphene.String(required=True))
 
-
     def resolve_all_cpfs(self, info, **kwargs):
         return ApprovedCPF.objects.all()
 
@@ -32,12 +31,9 @@ class ApprovedCPFQuery(graphene.ObjectType):
         return None
 
 
-
-
 class PurchaseType(DjangoObjectType, token=graphene.String(required=True)):
     class Meta:
         model = Purchase
-
 
 
 class PurchaseQuery(graphene.ObjectType):
@@ -56,8 +52,6 @@ class PurchaseQuery(graphene.ObjectType):
     # all_purchase = graphene.List(PurchaseType, token=graphene.String(required=True))
     all_purchase = graphene.List(PurchaseType, token=graphene.String(required=False))
 
-
-
     def resolve_all_purchase(self, info, **kwargs):
         return Purchase.objects.all()
 
@@ -67,17 +61,6 @@ class PurchaseQuery(graphene.ObjectType):
             return Purchase.objects.get(pk=id)
 
         return None
-
-
-
-
-
-
-
-
-
-
-
 
 # class Mutation(graphene.ObjectType):
 #     create_user = CreateUser.Field()
