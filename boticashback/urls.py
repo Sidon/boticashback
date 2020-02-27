@@ -7,23 +7,25 @@ from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshVie
 from graphene_django.views import GraphQLView
 from .views import HomePageView
 from boticashback.settings import base as settings
-from apps.reseller.views import ResellerViewSet
+from apps.reseller.views import ResellerViewSet, ReadMeView
 from apps.purchase.views import ApprovedCPFViewSet, PurchaseViewSet, CashbackAcumullated
-from apps.cashback.views import DebitViewSet
+from apps.cashback.views import DebitViewSet, RangeViewSet
 
 router = DefaultRouter()
 router.register('revendedores', ResellerViewSet, basename='reselers')
-router.register('cadastro-cpf-pre-aprovados', ApprovedCPFViewSet, basename='cpfs')
+router.register('cadastro-cpf-pre-aprovado', ApprovedCPFViewSet, basename='cpfs')
 router.register('cadastro-de-compra', PurchaseViewSet, basename='compras')
 router.register('cadastro-de-compra-admin', PurchaseViewSet, basename='admin-compras')
 router.register('cashback-acumulada', CashbackAcumullated, basename='cashback-acumulado')
 router.register('cashback-lista-local', DebitViewSet, basename='cashback-lista')
+router.register('cashback-intervalos', RangeViewSet, basename='cashback-intervalos')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('revendedores/', include('apps.reseller.urls')),
-    path('', HomePageView.as_view(), name='home'),
+    path('', include('apps.reseller.urls')),
+    # path('', ReadMeView.as_view(), {'rst_file': os.path.join(settings.BASE_DIR, 'README.rst')}, name='home'),
+    # path('', ReadMeView.as_view(), {'rst_file': os.path.join(settings.BASE_DIR, 'README.rst')}, name='home'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/v1/', include(router.urls)),

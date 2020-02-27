@@ -1,9 +1,9 @@
 {% extends 'reseller/dashboard.html' %}
-{% load static%}
-
+{% load markup_tags %}
 
 {%  block content %}
-    <img src="{% static "reseller/img/logo.png" %}" style="width: 100%;height: auto;text-align: center;line-height: 300px"/>
+    <div id="createp" class="card-body">
+{#        {{ text | apply_markup: "restructuredtext"  }}#}
+        {{ text|apply_markup:"restructuredtext" }}
+    </div>
 {% endblock %}
-
-

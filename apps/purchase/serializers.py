@@ -30,7 +30,6 @@ class PurchaseAdminSerializer(serializers.ModelSerializer):
 
 
 class AprovedCPFSerializer(serializers.ModelSerializer):
-    # reseller = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     class Meta:
         model = ApprovedCPF
         fields = ('id', 'cpf', 'description')

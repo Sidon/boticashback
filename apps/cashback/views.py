@@ -24,6 +24,18 @@ class DebitViewSet(GenericViewSet, mixins.ListModelMixin):
     queryset = CashbackDebit.objects.all()
 
 
+class RangeViewSet(GenericViewSet, mixins.ListModelMixin):
+    # Allow any user (authenticated or not) to hit this endpoint.
+    # permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
+    serializer_class = CashbackRangeSerializer
+    queryset = CashbackRange.objects.all()
+
+
+
+
+
 class CreateCashbackPaymentView(CreateAPIView):
     serializer_class = CashbackPaymentSerializer
     queryset = CashbackPayment.objects.all()

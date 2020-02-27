@@ -57,7 +57,7 @@ class ResellerAPITestCase(APITestCase):
             self.assertEqual(error.code, 'unique')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_create_ivalid_cpf(self):
+    def test_create_invalid_cpf(self):
         url = reverse('reseller:resellers-list')
         data = {
             "email": "unique_cpf@test.net",
@@ -66,7 +66,7 @@ class ResellerAPITestCase(APITestCase):
             "password": "master123",
         }
         response = self.client.post(url, data)
-        print(response.data)
+        print(dir(response))
         for error in response.data['cpf']:
             self.assertEqual(error.code, 'invalid')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

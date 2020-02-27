@@ -15,7 +15,6 @@ class ApprovedCPFViewSet(GenericViewSet, mixins.CreateModelMixin, mixins.ListMod
     # permission_classes = (IsAdminUser,)
     # permission_classes = (IsAuthenticated,)
     permission_classes = (AllowAny,)
-
     serializer_class = AprovedCPFSerializer
     queryset = ApprovedCPF.objects.all()
 

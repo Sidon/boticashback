@@ -11,14 +11,11 @@ from rest_framework import routers
 from boticashback.settings import base as settings
 
 app_name = 'reseller'
-# router = routers.SimpleRouter()
-# router.register('revendedores', ResellerViewSet, basename='resellers')
 
 urlpatterns = [
-    # path('api/v1/', include(router.urls)),
-    path('', login_required(ResellerListView.as_view()), name='home'),
-    path('readme/', ReadMeView.as_view(), {'rst_file': os.path.join(settings.BASE_DIR, 'README.rst')}, name='readme'),
-    # path('cadastro/', staff_member_required(ResellerCreateView.as_view()), name='reseller'),
+    path('revendedores', login_required(ResellerListView.as_view()), name='resellers-list'),
+    path('', ReadMeView.as_view(), {'rst_file': os.path.join(settings.BASE_DIR, 'README.rst')}, name='home'),
+    path('readme', ReadMeView.as_view(), {'rst_file': os.path.join(settings.BASE_DIR, 'README.rst')}, name='readme'),
     path('cadastro/', ResellerCreateView.as_view(), name='reseller'),
     path('login/', LoginView.as_view(template_name='reseller/login.html'), name='login'),
 ]

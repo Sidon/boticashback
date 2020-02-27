@@ -13,6 +13,8 @@ TL;DR
 | A aplicação está hospedada no Heroku http://www.heroku.com.
 | Para testá-la clique: https://sdn-boticario.herokuapp.com/.
 | Repositorio no github: https://github.com/Sidon/boticashback.
+| Documentação REST API: https://documenter.getpostman.com/view/3684623/SzKYNGXQ
+| GraphQL API: http://127.0.0.1:8000/graphiql/
 
 PROBLEMA/OPORTUNIDADE
 *********************
@@ -34,6 +36,9 @@ novos revendedores, revendedores por sua vez só podoerão cadastar apenas suas 
 o sistema deverá, automaticamente, checar se aquele revendedor tem valores de cachback a serem resgatados (haverá
 uma configuração para o numero de dias em que o resgate poderá serfeito) e gerar um débito (crédito para o revendedor)
 de cashback, se aplicável, para aquela conta.
+
+Dados iniciais:
+Para simplificar foi utilizado o banco de dados "embutido" no python SQLite3,
 
 Todas as funcionalidades serão disponibilizadas no backend via API REST e Graphql, assim como no front-end através
 da url https://sdn-boticario.herokuapp.com/, para acessar como administrador, ao ser solicitado as crdenciais,
@@ -71,85 +76,35 @@ Ambiente de desenvolvimento:
 :Date: **15/02/2020**
 :Author: **Sidon Duarte**
 
-#########################
-Acessando a API via Curl
-#########################
+###########################
+Documentação da  API (REST)
+###########################
 
+Para testes e documentação foi utilizado a versão free do software para desenvolvimento de APIs `Postman <https://www.postman.com/>`_.
 
-Cadastrar um revendedor
-***********************
-
-.. code-block::
-
-    curl --location --request POST 'https://sdn-boticario.herokuapp.com/api/v1/revendedores/' \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
-        "full_name": "Frank Vincent Zappa",
-        "cpf": "18375314048",
-        "email": "frank@zappa.net",
-        "password": "master123"
-    }'
-
-Response:
-
-.. code-block::
-
-    {
-        "id": 9,
-        "full_name": "Frank Vincent Zappa",
-        "cpf": "18375314048",
-        "email": "frank@zappa.net"
-    }
-
-Obter Token:
-************
-
-.. code-block::
-
-    curl --location --request POST 'https://sdn-boticario.herokuapp.com/api/token/' \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
-        "email": "frank@zappa.net",
-        "password": "master123"
-    }'
-
-Response:
-
-.. code-block::
-
-    {
-        "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU4MjA2NzAzMCwianRpIjoiZmY1ZTcwZDU3MjIwNDBhN2E0MjBmY2M2MjE5MzBiZTkiLCJ1c2VyX2lkIjo5fQ.A54xO9Ery7t_G5Whr_5JEpZuLGs3mJkc5ggpS4K6lUI",
-        "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTgxOTgwOTMwLCJqdGkiOiI1ZmI2NDAzZjhmMjE0NjViYjdjNTRkYjg1MjNkMjQzZCIsInVzZXJfaWQiOjl9.IWS2wFI6suHNhJe--r61sfMja0e0Wenhy_iFFwiMoE0"
-    }
-
-API Root:
-*********
-
-.. code-block::
-
-
-    $ curl https://sdn-boticario.herokuapp.com/api/v1/
-    {"revendedores":"https://sdn-boticario.herokuapp.com/api/v1/revendedores/"}
-
+A documentação oferece exemplos de requests em varios formatos, tais como cURL, c#, Go, HTTP, Javascrip, Java, Etc.
+Para acessar clique no link: https://documenter.getpostman.com/view/3684623/SzKYNGXQ
 
 Instalação local
 ****************
 
-1) Clone o repositorio https://github.com/Sidon/boticashback
-2) Crie um ambiente virtual com seu gerenciador favorito (conda, pyenv, virtualenv, etc)
-3) No diretorio clonado, instale os requirements com o comando:
+Clone o repositorio https://github.com/Sidon/boticashback;
+
+Crie um ambiente virtual com seu gerenciador favorito (conda, pyenv, virtualenv, etc);
+
+No diretorio clonado, instale os requirements com o comando:
 
 .. code-block::
 
-    $ pip install -r requirements.txt
+        $ pip install -r requirements.txt
 
-4) Crie os dados iniciais com o comando:
+Crie os dados iniciais com o comando:
 
 .. code-block::
 
     $ python ./manage.py initial_data
 
-5) Execute a aplicação com o comando:
+Execute a aplicação com o comando:
 
 .. code-block::
 

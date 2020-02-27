@@ -33,7 +33,7 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item {% if request.resolver_match.view_name == "reseller:home" %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'reseller:home' %}">
+                        <a class="nav-link" href="{% url 'reseller:resellers-list' %}">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>Revendedores</p>
                         </a>
@@ -65,7 +65,7 @@
 
 
                     <li>
-                        <a class="nav-link" href="/api/v1/">
+                        <a class="nav-link" href="https://documenter.getpostman.com/view/3684623/SzKYNGXQ">
                             <i class="nc-icon nc-atom"></i>
                             <p>API REST</p>
                         </a>
