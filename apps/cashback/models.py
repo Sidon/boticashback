@@ -17,6 +17,7 @@ class CashbackDebit(models.Model):
         ('PENDING', 'Pendente'),
         ('PAID', 'Pago'),
     )
+    # Evitando circular import
     purchase = models.OneToOneField('purchase.Purchase', on_delete=models.PROTECT, related_name='debit')
     percentage = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Percentagem do cashback')
     cashback_value = models.DecimalField(verbose_name='Valor', max_digits=12, decimal_places=2)

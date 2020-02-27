@@ -14,7 +14,7 @@ TL;DR
 | Para testá-la clique: https://sdn-boticario.herokuapp.com/.
 | Repositorio no github: https://github.com/Sidon/boticashback.
 | Documentação REST API: https://documenter.getpostman.com/view/3684623/SzKYNGXQ
-| GraphQL API: http://127.0.0.1:8000/graphiql/
+| GraphQL API: https://sdn-boticario.herokuapp.com/graphiql/
 
 PROBLEMA/OPORTUNIDADE
 *********************

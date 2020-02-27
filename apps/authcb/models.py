@@ -1,10 +1,6 @@
-from datetime import datetime, timedelta
 from django.db import (models, transaction)
 from django.utils import timezone
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, Permission, Group, PermissionsMixin)
-from django.conf import settings
-import jwt
-
 bnull = dict(null=True, blank=True)
 
 
