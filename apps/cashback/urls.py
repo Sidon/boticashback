@@ -11,6 +11,3 @@ router.register('cashback-intervalos', CreateCashbackRangeView, basename='interv
 router.register('cashback-resgate', CreateCashbackRangeView, basename='resgate')
 
 
-# urlpatterns = [
-#     # path('revendedores/', include(router.urls)),
-# ]
