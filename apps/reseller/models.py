@@ -3,7 +3,7 @@ from django.db import models
 from localflavor.br.models import BRCPFField
 
 import locale
-locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+# locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 User = get_user_model()
 
