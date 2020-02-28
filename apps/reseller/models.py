@@ -26,7 +26,6 @@ class Reseller(User):
     full_name = models.CharField('Nome Completo', max_length=70)
     objects = ResellerManager()
 
-
     def _get_purchase_total(self):
         from apps.purchase import models as md
         sum = \

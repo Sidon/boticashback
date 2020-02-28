@@ -1,14 +1,16 @@
 import graphene
+from graphene import ObjectType
 from graphene_django import DjangoObjectType
 from django.contrib.auth import get_user_model
 from apps.purchase.models import Purchase, ApprovedCPF
+from graphql_jwt.decorators import login_required
 User = get_user_model()
 
 
 class ApprovedCPFType(DjangoObjectType, token=graphene.String(required=True)):
     class Meta:
         model = ApprovedCPF
-
+        name = 'CPF'
 
 class ApprovedCPFQuery(graphene.ObjectType):
     approved_cpf = graphene.Field(
@@ -31,6 +33,7 @@ class ApprovedCPFQuery(graphene.ObjectType):
         return None
 
 
+
 class PurchaseType(DjangoObjectType, token=graphene.String(required=True)):
     class Meta:
         model = Purchase
@@ -47,6 +50,7 @@ class PurchaseQuery(graphene.ObjectType):
         status=graphene.String(),
         created_at=graphene.String(),
         update_at=graphene.String(),
+
     )
 
     # all_purchase = graphene.List(PurchaseType, token=graphene.String(required=True))
@@ -62,5 +66,23 @@ class PurchaseQuery(graphene.ObjectType):
 
         return None
 
-# class Mutation(graphene.ObjectType):
-#     create_user = CreateUser.Field()
+
+class CreatePurchase(graphene.Mutation):
+    class Argument:
+        purchase_value=graphene.String(required=True),
+        reseller_id=graphene.String(required=True),
+        code=graphene.String(required=True),
+        date_purchase=graphene.String(required=True),
+
+    purchase =  graphene.Field(PurchaseType, token=graphene.String(required=True))
+
+    @login_required
+    def mutate(self, info, purchase_value, reseller_id, code, date_purchase ):
+        new_purchase = Purchase.objects.create()
+        new_purchase.purchase_value = purchase_value
+        new_purchase.reseller_id = reseller_id
+        new_purchase.code = code
+        new_purchase.date_purchase = date_purchase
+        new_purchase.save()
+        return CreatePurchase(purchase=new_purchase)
+
