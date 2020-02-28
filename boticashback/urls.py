@@ -20,15 +20,15 @@ router.register('cashback-acumulada', CashbackAcumullated, basename='cashback-ac
 router.register('cashback-lista-local', DebitViewSet, basename='cashback-lista')
 router.register('cashback-intervalos', RangeViewSet, basename='cashback-intervalos')
 
+app_name = 'boticashback'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.reseller.urls')),
-    # path('', ReadMeView.as_view(), {'rst_file': os.path.join(settings.BASE_DIR, 'README.rst')}, name='home'),
-    # path('', ReadMeView.as_view(), {'rst_file': os.path.join(settings.BASE_DIR, 'README.rst')}, name='home'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/v1/', include(router.urls)),
+    # Criando um nome space: Tupla contendo urls.py e nome da view + namespace
+    path('api/v1/', include((router.urls, 'api-root'),  namespace='api-root')),
     path("graphiql/", GraphQLView.as_view(graphiql=True))
 ]
 

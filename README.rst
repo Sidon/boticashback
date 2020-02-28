@@ -80,10 +80,13 @@ Ambiente de desenvolvimento:
 Documentação da  API (REST)
 ###########################
 
-Para testes e documentação foi utilizado a versão free do software para desenvolvimento de APIs `Postman <https://www.postman.com/>`_.
-
+Para a documentação foi utilizado a versão free do software para desenvolvimento de APIs `Postman <https://www.postman.com/>`_.
 A documentação oferece exemplos de requests em varios formatos, tais como cURL, c#, Go, HTTP, Javascrip, Java, Etc.
 Para acessar clique no link: https://documenter.getpostman.com/view/3684623/SzKYNGXQ
+
+Testes
+******
+Para testar a api, além do Postman citado, foi utilizado também o pacote `Pytest <https://docs.pytest.org/en/latest/>`_.
 
 Instalação local
 ****************
