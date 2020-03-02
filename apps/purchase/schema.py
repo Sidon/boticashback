@@ -7,10 +7,11 @@ from graphql_jwt.decorators import login_required
 User = get_user_model()
 
 
-class ApprovedCPFType(DjangoObjectType, token=graphene.String(required=True)):
+# class ApprovedCPFType(DjangoObjectType, token=graphene.String(required=True)):
+class ApprovedCPFType(DjangoObjectType):
     class Meta:
         model = ApprovedCPF
-        name = 'CPF'
+
 
 class ApprovedCPFQuery(graphene.ObjectType):
     approved_cpf = graphene.Field(
@@ -31,7 +32,6 @@ class ApprovedCPFQuery(graphene.ObjectType):
         if id:
             return ApprovedCPF.objects.get(pk=id)
         return None
-
 
 
 class PurchaseType(DjangoObjectType, token=graphene.String(required=True)):
@@ -68,15 +68,15 @@ class PurchaseQuery(graphene.ObjectType):
 
 
 class CreatePurchase(graphene.Mutation):
-    class Argument:
-        purchase_value=graphene.String(required=True),
-        reseller_id=graphene.String(required=True),
-        code=graphene.String(required=True),
-        date_purchase=graphene.String(required=True),
+    class Arguments:
+        purchase_value=graphene.String(required=True)
+        reseller_id=graphene.String(required=True)
+        code=graphene.String(required=True)
+        date_purchase=graphene.String(required=True)
 
-    purchase =  graphene.Field(PurchaseType, token=graphene.String(required=True))
+    purchase = graphene.Field(PurchaseType, token=graphene.String(required=False))
 
-    @login_required
+    # @login_required
     def mutate(self, info, purchase_value, reseller_id, code, date_purchase ):
         new_purchase = Purchase.objects.create()
         new_purchase.purchase_value = purchase_value
@@ -85,4 +85,21 @@ class CreatePurchase(graphene.Mutation):
         new_purchase.date_purchase = date_purchase
         new_purchase.save()
         return CreatePurchase(purchase=new_purchase)
+
+
+class CreateAprovedCPF(graphene.Mutation):
+    class Arguments:
+        cpf=graphene.String(required=True)
+        description=graphene.String(required=True)
+
+    # cpf = graphene.Field(ApprovedCPFType, token=graphene.String(required=True))
+    cpf = graphene.Field(ApprovedCPFType)
+
+    # @login_required
+    def mutate(self, info, cpf, description):
+        new_cpf = ApprovedCPF.objects.create()
+        new_cpf.cpf = cpf
+        new_cpf.description = description
+        new_cpf.save()
+        return CreateAprovedCPF(cpf=new_cpf)
 

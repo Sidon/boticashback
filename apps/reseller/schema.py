@@ -49,12 +49,11 @@ class CreateReseller(graphene.Mutation):
     #     return CreateReseller(reseller=new_reseller)
 
     def mutate(self, info, full_name, cpf, email, password ):
-        # new_reseller = Reseller.objects.create()
         new_reseller = Reseller.objects.create()
-        new_reseller.full_name=full_name
-        new_reseller.cpf=cpf
-        new_reseller.email=email
-        password=password
+        new_reseller.full_name = full_name
+        new_reseller.cpf = cpf
+        new_reseller.email = email
+        new_reseller.password = password
         new_reseller.save()
         return CreateReseller(reseller=new_reseller)
 

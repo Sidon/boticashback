@@ -2,6 +2,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from django.contrib.auth import get_user_model
 from apps.cashback.models import CashbackRange, CashbackDebit,CashbackPayment
+
 User = get_user_model()
 
 
@@ -20,7 +21,6 @@ class CashbackRangeQuery(graphene.ObjectType):
 
     # all_cashback_range = graphene.List(CashbackRangeType, token=graphene.String(required=True))
     all_cashback_range = graphene.List(CashbackRangeType, token=graphene.String(required=False))
-
 
     def resolve_all_cashback_range(self, info, **kwargs):
         return CashbackRange.objects.all()
