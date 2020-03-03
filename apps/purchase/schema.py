@@ -92,10 +92,10 @@ class CreateAprovedCPF(graphene.Mutation):
         cpf=graphene.String(required=True)
         description=graphene.String(required=True)
 
-    # cpf = graphene.Field(ApprovedCPFType, token=graphene.String(required=True))
-    cpf = graphene.Field(ApprovedCPFType)
+    cpf = graphene.Field(ApprovedCPFType, token=graphene.String(required=True))
+    # cpf = graphene.Field(ApprovedCPFType)
 
-    # @login_required
+    @login_required
     def mutate(self, info, cpf, description):
         new_cpf = ApprovedCPF.objects.create()
         new_cpf.cpf = cpf

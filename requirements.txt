@@ -17,5 +17,7 @@ PyYAML==5.3
 requests==2.23.0
 django-graphql-jwt==0.3.0
 graphene-django==2.8.2
+pytest-django==3.8.0
+
 
 
