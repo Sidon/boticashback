@@ -121,7 +121,7 @@ Crie um ambiente virtual com seu gerenciador favorito (conda, pyenv, virtualenv,
 
 Crie uma variável de ambiente chamada ENVIRONMENT com o valor 'locla':
 
-$ esport ENVIRONMENT='local'
+$ export ENVIRONMENT='local'
 
 No diretorio clonado, instale os requirements com o comando:
 
