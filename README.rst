@@ -81,7 +81,7 @@ Cobertura (Pytest)
 
 .. code-block::
 
-        ----------- coverage: platform linux, python 3.8.1-final-0 -----------
+        --- coverage: platform linux, python 3.8.1-final-0 ----
         Name                                Stmts   Miss  Cover
         -------------------------------------------------------
         boticashback/__init__.py                0      0   100%
