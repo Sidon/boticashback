@@ -119,7 +119,7 @@ Clone o repositorio https://github.com/Sidon/boticashback;
 
 Crie um ambiente virtual com seu gerenciador favorito (conda, pyenv, virtualenv, etc);
 
-Crie uma variável de ambiente chamada ENVIRONMENT com o valor 'locla':
+Crie uma variável de ambiente chamada ENVIRONMENT com o valor 'local':
 
 .. code-block::
 
