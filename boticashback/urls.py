@@ -36,7 +36,7 @@ urlpatterns = [
 try:
     ENV = os.environ['ENVIRONMENT']
 except:
-    ENV = 'local'
+    ENV = 'nolocal'
 
 if settings.DEBUG and ENV == 'local':
     import debug_toolbar
