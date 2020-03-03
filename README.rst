@@ -64,17 +64,40 @@ Ambiente de desenvolvimento:
     +-------------------+---------------------------+------------+
     | Devel Platform    + Django/Python             | 3.8        |
     +-------------------+---------------------------+------------+
-    | CI                | CircleCI                  | 2017-08    |
+    | CI                | travis-ci                 | 2020       |
     +-------------------+---------------------------+------------+
-    | Coverage          | Codecov                   |            |
+    | Coverage          | Pytest --cov              | 2.8.1      |
     +-------------------+---------------------------+------------+
     | Django            | Main framework            | 3.0.3      |
     +-------------------+---------------------------+------------+
     | DRF               | dajano-rest-fw            |  4.4.0     |
     +-------------------+---------------------------+------------+
 
-:Date: **15/02/2020**
+:Date: **03/03/2020**
 :Author: **Sidon Duarte**
+
+Cobertura (Pytest)
+******************
+
+.. code-block::
+
+        ----------- coverage: platform linux, python 3.8.1-final-0 -----------
+        Name                                Stmts   Miss  Cover
+        -------------------------------------------------------
+        boticashback/__init__.py                0      0   100%
+        boticashback/asgi.py                    4      4     0%
+        boticashback/schema.py                 17     17     0%
+        boticashback/settings/__init__.py       0      0   100%
+        boticashback/settings/base.py          49      3    94%
+        boticashback/settings/dev.py            5      0   100%
+        boticashback/urls.py                   29      2    93%
+        boticashback/views.py                   6      2    67%
+        boticashback/wsgi.py                    4      4     0%
+        -------------------------------------------------------
+        TOTAL                                 114     32    72%
+
+
+
 
 ###########################
 Documentação da  API (REST)
