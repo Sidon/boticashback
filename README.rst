@@ -121,13 +121,15 @@ Crie um ambiente virtual com seu gerenciador favorito (conda, pyenv, virtualenv,
 
 Crie uma variável de ambiente chamada ENVIRONMENT com o valor 'locla':
 
-$ export ENVIRONMENT='local'
+.. code-block::
+
+    $ export ENVIRONMENT='local'
 
 No diretorio clonado, instale os requirements com o comando:
 
 .. code-block::
 
-        $ pip install -r dev_requirements.txt
+    $ pip install -r dev_requirements.txt
 
 Crie os dados iniciais com o comando:
 
