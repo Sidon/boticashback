@@ -15,6 +15,7 @@ TL;DR
 | Repositorio no github: https://github.com/Sidon/boticashback.
 | Documentação REST API: https://documenter.getpostman.com/view/3684623/SzKYNGXQ
 | GraphQL API: https://sdn-boticario.herokuapp.com/graphiql/
+| Testes (Ingegração): https://travis-ci.com/Sidon/boticashback
 
 PROBLEMA/OPORTUNIDADE
 *********************
