@@ -119,11 +119,15 @@ Clone o repositorio https://github.com/Sidon/boticashback;
 
 Crie um ambiente virtual com seu gerenciador favorito (conda, pyenv, virtualenv, etc);
 
+Crie uma variável de ambiente chamada ENVIRONMENT com o valor 'locla':
+
+$ esport ENVIRONMENT='local'
+
 No diretorio clonado, instale os requirements com o comando:
 
 .. code-block::
 
-        $ pip install -r requirements.txt
+        $ pip install -r dev_requirements.txt
 
 Crie os dados iniciais com o comando:
 
