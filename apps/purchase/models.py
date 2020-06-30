@@ -43,7 +43,7 @@ class Purchase(models.Model):
             return 0
 
     @staticmethod
-    def get_cashback_debit_value(value, percent):
+    def get_cashback_debit_value(value, percent=10):
         return (value * percent) / 100
 
     @staticmethod

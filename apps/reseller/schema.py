@@ -1,11 +1,9 @@
 import graphene
 #from graphene_django import DjangoObjectType
 from graphene_django.types import DjangoObjectType
-from graphene_django.rest_framework.mutation import SerializerMutation
 from django.contrib.auth import get_user_model
 from apps.reseller.models import Reseller
 from django.db.models import Q
-from apps.reseller.serializers import ResellerSerializer
 User = get_user_model()
 
 

@@ -42,14 +42,14 @@ class PurchaseType(DjangoObjectType, token=graphene.String(required=True)):
 class PurchaseQuery(graphene.ObjectType):
     purchase = graphene.Field(
         PurchaseType,
-        purchase_value=graphene.String(required=True),
+        purchase_value=graphene.Decimal(required=True),
         reseller=graphene.String(required=True),
         code=graphene.String(),
-        date_purchase=graphene.String(),
-        cashback_credit_value=graphene.String(),
+        date_purchase=graphene.Date(),
+        cashback_credit_value=graphene.Decimal(),
         status=graphene.String(),
-        created_at=graphene.String(),
-        update_at=graphene.String(),
+        created_at=graphene.Date(),
+        update_at=graphene.Date(),
 
     )
 
@@ -69,21 +69,21 @@ class PurchaseQuery(graphene.ObjectType):
 
 class CreatePurchase(graphene.Mutation):
     class Arguments:
-        purchase_value=graphene.String(required=True)
-        reseller_id=graphene.String(required=True)
-        code=graphene.String(required=True)
-        date_purchase=graphene.String(required=True)
+        purchase_value = graphene.Decimal(required=True)
+        reseller_id = graphene.String(required=True)
+        code = graphene.String(required=True)
+        date_purchase = graphene.Date(required=True)
 
     purchase = graphene.Field(PurchaseType, token=graphene.String(required=False))
 
     # @login_required
-    def mutate(self, info, purchase_value, reseller_id, code, date_purchase ):
-        new_purchase = Purchase.objects.create()
-        new_purchase.purchase_value = purchase_value
-        new_purchase.reseller_id = reseller_id
-        new_purchase.code = code
-        new_purchase.date_purchase = date_purchase
-        new_purchase.save()
+    def mutate(self, info, purchase_value, reseller_id, code, date_purchase):
+        new_purchase = Purchase.objects.create(
+            purchase_value=purchase_value,
+            reseller_id=reseller_id,
+            code=code,
+            date_purchase=date_purchase,
+        )
         return CreatePurchase(purchase=new_purchase)
 
 
